@@ -1,4 +1,5 @@
-FROM node:20
+#FROM node:20
+FROM 532607548077.dkr.ecr.us-east-1.amazonaws.com/mynodeapp-frontend-dev:latest
 WORKDIR /app
 COPY package.json ./
 COPY webpack.config.js ./

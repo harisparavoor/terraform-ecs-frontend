@@ -3,7 +3,12 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: ""   # CodeDeploy will replace this with the new task definition during deployment
+        TaskDefinition: ""   # CodeDeploy will auto-fill the new task definition ARN
         LoadBalancerInfo:
-          ContainerName: "frontend"
-          ContainerPort: 3000
+          TargetGroupPairInfo:
+            TargetGroups:
+              - Name: "${frontend_blue_target_group_name}"
+              - Name: "${frontend_green_target_group_name}"
+            ProdTrafficRoute:
+              ListenerArns:
+                - "${alb_listener_arn}"

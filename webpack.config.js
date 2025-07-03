@@ -1,5 +1,8 @@
 var path = require('path');
+
+// Use environment variable with proper fallback
 const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080';
+
 module.exports = {
     entry: './src/main/js/app.js',
     devtool: 'eval-source-map',
@@ -11,9 +14,9 @@ module.exports = {
         }
     },
     output: {
-        path: path.resolve(__dirname, 'dist'), // build output in 'dist' for development
+        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: '/', // important for dev-server to serve from root
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -31,18 +34,24 @@ module.exports = {
     },
     devServer: {
         static: {
-            directory: path.join(__dirname, 'public'), // serve static files if any
+            directory: path.join(__dirname, 'public'),
         },
-        historyApiFallback: true, // useful for React Router
+        historyApiFallback: true,
         proxy: {
-            '/api': 'http://backendUrl:8080', // proxy API requests to backend
+            '/api': {
+                target: backendUrl,
+                changeOrigin: true,
+                pathRewrite: {'^/api': ''}
+            },
             '/ws': {
-                target: 'http://backendUrl:8080',
-                ws: true
+                target: backendUrl.replace('http', 'ws'),
+                ws: true,
+                changeOrigin: true
             }
         },
         port: 3000,
+        host: '0.0.0.0',  // Important for Docker/ECS
         hot: true,
-        open: true
+        allowedHosts: 'all'  // For development flexibility
     }
 };

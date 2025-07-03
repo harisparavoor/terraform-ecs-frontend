@@ -17,6 +17,7 @@ phases:
       - sed -i "s|{{alb_listener_arn}}|$alb_listener_arn|g" appspec.yml
       - echo "Here is the final appspec.yml after replacement:"
       - cat appspec.yml
+      
       - echo Logging in to Amazon ECR...
       - aws --version
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $REPOSITORY_URI

@@ -1,6 +1,5 @@
 #FROM node:20
 FROM 532607548077.dkr.ecr.us-east-1.amazonaws.com/mynodeapp-frontend-dev:latest
-ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
 WORKDIR /app
 COPY package.json ./
 COPY webpack.config.js ./

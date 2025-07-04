@@ -12,6 +12,7 @@ phases:
   pre_build:
     commands:
       - sed -i "s|{{REACT_APP_BACKEND_URL}}|$REACT_APP_BACKEND_URL|g" webpack.config.js
+      - echo $REACT_APP_BACKEND_URL
       - echo Replacing placeholders in appspec.yml
       - sed -i "s|{{frontend_blue_target_group_name}}|$frontend_blue_target_group_name|g" appspec.yml
       - sed -i "s|{{frontend_green_target_group_name}}|$frontend_green_target_group_name|g" appspec.yml

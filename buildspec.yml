@@ -14,6 +14,7 @@ phases:
       - echo Replacing placeholders in appspec.yml
       - sed -i "s|{{frontend_blue_target_group_name}}|$frontend_blue_target_group_name|g" appspec.yml
       - sed -i "s|{{frontend_green_target_group_name}}|$frontend_green_target_group_name|g" appspec.yml
+      - sed -i "s|{{task_definition}}|$task_definition|g" appspec.yml
       - sed -i "s|{{alb_listener_arn}}|$alb_listener_arn|g" appspec.yml
       - echo "Here is the final appspec.yml after replacement:"
       - cat appspec.yml

@@ -4,12 +4,12 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: ""
+        TaskDefinition: "{{task_definition}}"
         LoadBalancerInfo:
           TargetGroupPairInfo:
             TargetGroups:
-              - Name: {{frontend_blue_target_group_name}}
-              - Name: {{frontend_green_target_group_name}}
+              - Name: "{{frontend_blue_target_group_name}}"
+              - Name: "{{frontend_green_target_group_name}}"
             ProdTrafficRoute:
               ListenerArns:
-                - {{alb_listener_arn}}
+                - "{{alb_listener_arn}}"

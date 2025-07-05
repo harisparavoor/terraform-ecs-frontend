@@ -42,7 +42,7 @@ module.exports = {
             '/api': {
                 target: backendUrl,
                 changeOrigin: true,
-                pathRewrite: {'^/api': ''}
+                //pathRewrite: {'^/api': ''}//
             },
             '/ws': {
                 target: backendUrl.replace('http', 'ws'),

@@ -41,8 +41,7 @@ module.exports = {
         proxy: {
             '/api': {
                 target: backendUrl,
-                changeOrigin: true,
-                //pathRewrite: {'^/api': ''}//
+                changeOrigin: true
             },
             '/ws': {
                 target: backendUrl.replace('http', 'ws'),

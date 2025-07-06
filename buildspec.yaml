@@ -13,13 +13,13 @@ phases:
     commands:
       - sed -i "s|{{REACT_APP_BACKEND_URL}}|$REACT_APP_BACKEND_URL|g" webpack.config.js
       - echo $REACT_APP_BACKEND_URL
-      - echo Replacing placeholders in appspec.yaml
-      - sed -i "s|{{frontend_blue_target_group_name}}|$frontend_blue_target_group_name|g" appspec.yaml
-      - sed -i "s|{{frontend_green_target_group_name}}|$frontend_green_target_group_name|g" appspec.yaml
-      - sed -i "s|{{task_definition}}|$task_definition|g" appspec.yaml
-      - sed -i "s|{{alb_listener_arn}}|$alb_listener_arn|g" appspec.yaml
+      - echo Replacing placeholders in appspec.json
+      #- sed -i "s|{{frontend_blue_target_group_name}}|$frontend_blue_target_group_name|g" appspec.json
+      #- sed -i "s|{{frontend_green_target_group_name}}|$frontend_green_target_group_name|g" appspec.json
+      - sed -i "s|{{task_definition}}|$task_definition|g" appspec.json
+      #- sed -i "s|{{alb_listener_arn}}|$alb_listener_arn|g" appspec.json
       - echo "Here is the final appspec.yaml after replacement:"
-      - cat appspec.yaml
+      - cat appspec.json
       - cat webpack.config.js
       - echo Logging in to Amazon ECR...
       - aws --version
@@ -44,5 +44,5 @@ phases:
 
 artifacts:
   files:
-    - appspec.yaml
+    - appspec.json
     - imagedefinitions.json

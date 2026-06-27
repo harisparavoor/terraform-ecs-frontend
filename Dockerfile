@@ -13,5 +13,4 @@ RUN npm install
 RUN npm run build
 
 EXPOSE 3000
-
-CMD ["npx", "serve", "-s", "dist", "-l", "3000"]
+CMD ["npx", "webpack", "serve", "--host", "0.0.0.0", "--port", "3000"]
